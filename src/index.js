@@ -6,7 +6,7 @@ import SavedCharacters from './Components/SavedCharacters';
 
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
-const routing = (
+const Root = (
   <Router>
     <div>
       <Route exact path="/" component={App} />
@@ -15,4 +15,4 @@ const routing = (
   </Router>
 );
 
-render(routing, document.getElementById('root'));
+render(Root, document.getElementById('root'));

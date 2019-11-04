@@ -12,7 +12,7 @@ export default class SavedCharacters extends React.Component {
     this.setState({activeList: this.props.location.list});
   }
   removeItem (item) {
-     var index = this.state.activeList.indexOf(item);
+     const index = this.state.activeList.indexOf(item);
      if (index !== -1) this.state.activeList.splice(index, 1);
      this.setState({activeList: this.state.activeList})
   }

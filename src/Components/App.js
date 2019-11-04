@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CharacterTile from './CharacterTile';
-import PopUpComponent from './PopUpComponent';
+import { PopUpComponent } from './PopUpComponent';
 import '../style.css';
 import { transformUrls } from '../Utilities/utils';
 
@@ -45,16 +45,16 @@ export default class App extends React.Component {
   }
   /* get user input and compare with characters list */
   searchByName (input,array) {
-    let result = [];
     if(input) {
-      for (var i = 0; i<array.length; i++) { 
-          if(((array[i].toLowerCase()).indexOf(input.toLowerCase()))>-1) 
-          { 
-            result.push(array[i]);
-          } 
-      }
+      const result = array.reduce((result,current,key) => {
+        if(((array[key].toLowerCase()).indexOf(input.toLowerCase()))>-1) {
+          result.push(array[key]);
+        }
+        return result; 
+      }, []);
+      this.setState({result});
     }
-    this.setState({result});
+    
   }
   /* toggle popup state to hide and show */
   showPopup (item) {
@@ -62,8 +62,13 @@ export default class App extends React.Component {
   }
   /*show alert message when a character is saved */
   addToSavedItems (item) {
-    this.savedCharacters.push(item);
-    alert("Item added to saved characters list");
+    if(this.savedCharacters.indexOf(item) === -1) {
+      this.savedCharacters.push(item);
+      alert("Character added to saved characters list.");
+    }
+    else {
+      alert("Character already saved.");
+    }
     this.setState({showPopup: !this.state.showPopup});
   }
 
