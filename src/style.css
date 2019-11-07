@@ -34,9 +34,15 @@
   margin-top: 5vh;
   height: 30px;
   font-size: 16px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .renderItem {
-  margin-top: 50px;
+  margin-top: 15vh;
+  display: flex;
+  position: absolute;
+  left: 20%;
 }
 .renderItem li {
   display: inline-block;
@@ -109,6 +115,8 @@
 .buttonContainer {
   position: absolute;
   bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .buttonContainer button {
   font-size: 16px;
@@ -117,9 +125,7 @@
 button:disabled {
   background: none;
 }
-.previous {
-  margin-left: 35vw;
-}
+
 .next {
   margin-left: 30px;
 }
@@ -134,7 +140,7 @@ button:disabled {
 }
 .viewSaved {
   float:right;
-  margin-top: 5vh;
+  margin-top: 4vh;
 }
 .viewSaved a,.back a {
   color: #fff;
