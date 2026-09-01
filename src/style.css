@@ -6,11 +6,13 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .container {
-  display: block;
-  text-align: center;
-  background-color: rgba(0,0,0, 0.4);
-  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  min-height: 75vh;
   font-weight: bold;
   border: 3px solid #f1f1f1;
   position: absolute;
@@ -18,67 +20,92 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  width: 80%;
+  width: min(80%, 1200px);
+  box-sizing: border-box;
 }
+
 .mainContent {
+  width: 100%;
   padding: 20px;
+  box-sizing: border-box;
 }
+
 .header {
   display: block;
-  font-size: 30px;
+  font-size: clamp(22px, 3vw, 30px);
   text-align: center;
   color: #fff;
 }
+
 .search {
-  width: calc(100vw/3);
-  margin-top: 5vh;
-  height: 30px;
+  width: min(360px, 60vw);
+  margin: 20px auto 0;
+  height: 40px;
   font-size: 16px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
+  position: static;
+  transform: none;
 }
+
 .renderItem {
-  margin-top: 15vh;
+  width: 100%;
   display: flex;
-  position: absolute;
-  left: 20%;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+  position: static;
 }
+
 .renderItem li {
-  display: inline-block;
+  flex: 1 1 220px;
+  max-width: 240px;
   border: 1px #ddd solid;
-  height: 200px;
-  width: 20%;
-  margin: 0 10px;
+  height: 220px;
+  margin: 0;
   cursor: pointer;
   background: #fff;
 }
+
 .image {
   height: 75%;
 }
+
 .title {
   padding: 15px;
   text-align: center;
 }
+
 .popup {
-    position: absolute;
-    width: 50%;
-    height: 75vh;
-    background-color: #fff;
-    z-index: 2;
-    border: 1px solid;
-    overflow: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(50%, 640px);
+  max-width: 90vw;
+  height: auto;
+  max-height: 75vh;
+  background-color: #fff;
+  z-index: 2;
+  border: 1px solid;
+  overflow: auto;
+  box-sizing: border-box;
 }
+
 .popup .desc {
   text-align: left;
   padding-left: 20px;
 }
+
 .popup .content {
   font-weight: normal;
   font-size: 13px;
   padding: 0 30px;
   margin-bottom: 10px;
 }
+
 .popup .image {
   margin: 0 auto;
   margin-top: 50px;
@@ -86,14 +113,15 @@
   height: 150px;
   border: 1px solid;
 }
+
 .overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
-    z-index: 1;
-    padding: 20px;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  padding: 20px;
 }
+
 .close {
   float: right;
   font-size: 16px;
@@ -101,6 +129,7 @@
   padding: 10px;
   cursor: pointer;
 }
+
 .save {
   float: left;
   font-size: 16px;
@@ -108,20 +137,27 @@
   padding: 10px;
   cursor: pointer;
 }
+
 .url li {
   margin-bottom: 5px;
   list-style: none;
 }
+
 .buttonContainer {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: static;
 }
+
 .buttonContainer button {
   font-size: 16px;
   border-radius: 5px;
 }
+
 button:disabled {
   background: none;
 }
@@ -129,37 +165,45 @@ button:disabled {
 .next {
   margin-left: 30px;
 }
+
 .back {
   float: left;
   padding-left: 5px;
   padding-top: 5px;
 }
+
 .remove {
   margin-left: 10px;
   cursor: pointer;
 }
+
 .viewSaved {
-  float:right;
-  margin-top: 4vh;
+  align-self: flex-end;
+  margin-top: 10px;
 }
-.viewSaved a,.back a {
+
+.viewSaved a,
+.back a {
   color: #fff;
   text-decoration: none;
 }
+
 .savedItems {
   margin: 0 auto;
   background-color: #fff;
-  border:3px solid #fff;
+  border: 3px solid #fff;
   margin-top: 50px;
   width: 80%;
-  height: 300px;
+  min-height: 300px;
 }
+
 .savedItems li {
   list-style: none;
   margin: 5px auto;
   float: left;
   width: 100%;
 }
+
 .disclaimer {
   font-size: 20px;
   padding-top: 150px;
