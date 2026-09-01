@@ -7,7 +7,7 @@ interface PopUpComponentProps {
     [key: string]: Array<{
       description: string;
       imagePath: string;
-      urls: string[];
+      aliases: string[];
     }>;
   };
   showPopup: (item: string) => void;
@@ -15,15 +15,16 @@ interface PopUpComponentProps {
 }
 
 export const PopUpComponent: FC<PopUpComponentProps> = (props) => {
+  console.log("===",props)
   return (
     <div className='popup'>
       <button className='save' onClick={() => {props.addToSavedItems(props.item)}}>Save Character</button>
       <button className='close' onClick={()=>props.showPopup('')}>X</button>
       <ImageComponent path={props.characterObj[props.item][0].imagePath} item={props.item}/>
       <div className='content'>{props.characterObj[props.item][0].description}</div>
-      <div>URLs:</div>
-      <ul className='url'>{props.characterObj[props.item][0].urls.map((url, index) => {
-        return <li key={index}><a href={url} rel="noopener noreferrer" target="_blank">{url}</a></li>
+      <div>Aliases:</div>
+      <ul className='url'>{props.characterObj[props.item][0].aliases.map((name, index) => {
+        return <li key={index}>{name}</li>
       })}
       </ul>
     </div>

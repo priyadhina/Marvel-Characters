@@ -7,7 +7,7 @@ interface CharacterTileProps {
     [key: string]: Array<{
       description: string;
       imagePath: string;
-      urls: string[];
+      aliases: string[];
     }>;
   };
   showPopup: (item: string) => void;

@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef, FC } from 'react';
 import { Link } from 'react-router-dom';
 import CharacterTile from './CharacterTile.tsx';
 import { PopUpComponent } from './PopUpComponent.tsx';
-import { transformUrls } from '../Utilities/utils.ts';
 import '../style.css';
 
 interface Character {
   description: string;
   imagePath: string;
-  urls: string[];
+  aliases: string[];
 }
 
 interface CharacterObj {
@@ -30,16 +29,7 @@ const App: FC = () => {
 
   /* fetch the data from api */
   const fetchResults = (): void => {
-    const apiKey = import.meta.env.VITE_MARVEL_API_KEY;
-    const ts = import.meta.env.VITE_MARVEL_TS;
-    const hash = import.meta.env.VITE_MARVEL_HASH;
-    
-    if (!apiKey || !ts || !hash) {
-      console.error('Missing Marvel API environment variables');
-      return;
-    }
-    
-    fetch(`/api/characters?ts=${ts}&apikey=${apiKey}&hash=${hash}`)
+    fetch(`https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`API error: ${response.status}`);
@@ -47,7 +37,7 @@ const App: FC = () => {
         return response.json();
       })
       .then(res => {
-        const characters = res.data.results.slice(0, 18);
+        const characters = res.filter((c: any) => c.biography.publisher === 'Marvel Comics');
         const newNameList: string[] = [];
         const newCharacterObj: CharacterObj = {};
         
@@ -55,9 +45,9 @@ const App: FC = () => {
           newNameList.push(item.name);
           const group: Character[] = [];
           group.push({
-            description: item.description,
-            imagePath: `${item.thumbnail.path}.${item.thumbnail.extension}`,
-            urls: transformUrls(item.urls)
+            description: item.biography.firstAppearance,
+            imagePath: `${item.images.lg}`,
+            aliases: item.biography.aliases
           });
           newCharacterObj[item.name] = group;
         });
