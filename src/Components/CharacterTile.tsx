@@ -5,7 +5,7 @@ interface CharacterTileProps {
   result?: string[];
   characterObj: {
     [key: string]: Array<{
-      description: string;
+      firstAppearance: string;
       imagePath: string;
       aliases: string[];
     }>;

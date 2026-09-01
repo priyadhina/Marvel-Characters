@@ -5,21 +5,21 @@ import CharacterTile from '../Components/CharacterTile.tsx';
 const mockCharacterObj = {
   'Spider-Man': [
     {
-      description: 'A web-slinging hero',
+      firstAppearance: 'A web-slinging hero',
       imagePath: 'https://example.com/spiderman.jpg',
       urls: ['https://marvel.com/spiderman']
     }
   ],
   'Iron Man': [
     {
-      description: 'A genius billionaire',
+      firstAppearance: 'A genius billionaire',
       imagePath: 'https://example.com/ironman.jpg',
       urls: ['https://marvel.com/ironman']
     }
   ],
   'Thor': [
     {
-      description: 'God of Thunder',
+      firstAppearance: 'God of Thunder',
       imagePath: 'https://example.com/thor.jpg',
       urls: ['https://marvel.com/thor']
     }

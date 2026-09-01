@@ -89,9 +89,45 @@
   max-height: 75vh;
   background-color: #fff;
   z-index: 2;
-  border: 1px solid;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
   overflow: auto;
   box-sizing: border-box;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.popupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.popupBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.popupDetails {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.popupSection {
+  width: 100%;
+}
+
+.popupLabel {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
 }
 
 .popup .desc {
@@ -101,17 +137,26 @@
 
 .popup .content {
   font-weight: normal;
-  font-size: 13px;
-  padding: 0 30px;
-  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
 }
 
 .popup .image {
   margin: 0 auto;
-  margin-top: 50px;
-  width: 50%;
-  height: 150px;
-  border: 1px solid;
+  width: min(220px, 60%);
+  height: 180px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.popup .title {
+  padding: 10px 0 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .overlay {
@@ -123,24 +168,36 @@
 }
 
 .close {
-  float: right;
+  float: none;
   font-size: 16px;
-  border: #fff;
-  padding: 10px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
   cursor: pointer;
 }
 
 .save {
-  float: left;
+  float: none;
   font-size: 16px;
-  border: #fff;
-  padding: 10px;
+  border: 1px solid #d9d9d9;
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 8px 12px;
   cursor: pointer;
 }
 
+.url {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .url li {
-  margin-bottom: 5px;
-  list-style: none;
+  margin: 0;
+  list-style: disc;
 }
 
 .buttonContainer {

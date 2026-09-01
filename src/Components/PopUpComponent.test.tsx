@@ -5,9 +5,9 @@ import { PopUpComponent } from '../Components/PopUpComponent.tsx';
 const mockCharacterObj = {
   'Spider-Man': [
     {
-      description: 'A web-slinging hero from New York',
+      firstAppearance: 'A web-slinging hero from New York',
       imagePath: 'https://example.com/spiderman.jpg',
-      urls: ['https://marvel.com/spiderman', 'https://en.wikipedia.org/wiki/Spider-Man']
+      aliases: ['Peter Parker', 'Friendly Neighborhood Hero']
     }
   ]
 };
@@ -37,7 +37,7 @@ describe('PopUpComponent', () => {
     expect(screen.getByText('X')).toBeInTheDocument();
   });
 
-  it('renders character description', () => {
+  it('renders character firstAppearance', () => {
     render(
       <PopUpComponent
         item="Spider-Man"
@@ -49,7 +49,7 @@ describe('PopUpComponent', () => {
     expect(screen.getByText('A web-slinging hero from New York')).toBeInTheDocument();
   });
 
-  it('renders character URLs', () => {
+  it('renders character aliases', () => {
     render(
       <PopUpComponent
         item="Spider-Man"
@@ -58,9 +58,9 @@ describe('PopUpComponent', () => {
         addToSavedItems={vi.fn()}
       />
     );
-    expect(screen.getByText('URLs:')).toBeInTheDocument();
-    expect(screen.getByText('https://marvel.com/spiderman')).toBeInTheDocument();
-    expect(screen.getByText('https://en.wikipedia.org/wiki/Spider-Man')).toBeInTheDocument();
+    expect(screen.getByText('Aliases:')).toBeInTheDocument();
+    expect(screen.getByText('Peter Parker')).toBeInTheDocument();
+    expect(screen.getByText('Friendly Neighborhood Hero')).toBeInTheDocument();
   });
 
   it('calls addToSavedItems when Save Character button is clicked', () => {

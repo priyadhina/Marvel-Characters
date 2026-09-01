@@ -5,16 +5,37 @@ interface LocationState {
   list?: string[];
 }
 
+const SAVED_CHARACTERS_KEY = 'savedCharacters';
+
 const SavedCharacters: FC = () => {
-  const [activeList, setActiveList] = useState<string[]>([]);
+  const [activeList, setActiveList] = useState<string[]>(() => {
+    const saved = localStorage.getItem(SAVED_CHARACTERS_KEY);
+    if (saved) {
+      return JSON.parse(saved);
+    }
+
+    const state = (window.history.state?.usr as LocationState | undefined) ?? undefined;
+    return state?.list ?? [];
+  });
   const location = useLocation();
 
   useEffect(() => {
     const state = location.state as LocationState;
     if (state && state.list) {
       setActiveList(state.list);
+      localStorage.setItem(SAVED_CHARACTERS_KEY, JSON.stringify(state.list));
+      return;
+    }
+
+    const saved = localStorage.getItem(SAVED_CHARACTERS_KEY);
+    if (saved) {
+      setActiveList(JSON.parse(saved));
     }
   }, [location.state]);
+
+  useEffect(() => {
+    localStorage.setItem(SAVED_CHARACTERS_KEY, JSON.stringify(activeList));
+  }, [activeList]);
 
   const removeItem = (item: string): void => {
     const index = activeList.indexOf(item);

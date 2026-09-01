@@ -5,7 +5,7 @@ import { PopUpComponent } from './PopUpComponent.tsx';
 import '../style.css';
 
 interface Character {
-  description: string;
+  firstAppearance: string;
   imagePath: string;
   aliases: string[];
 }
@@ -14,18 +14,27 @@ interface CharacterObj {
   [key: string]: Character[];
 }
 
+const SAVED_CHARACTERS_KEY = 'savedCharacters';
+
 const App: FC = () => {
   const [nameList, setNameList] = useState<string[]>([]);
   const [characterObj, setCharacterObj] = useState<CharacterObj>({});
   const [currentItem, setCurrentItem] = useState<string>('');
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [result, setResult] = useState<string[]>([]);
-  const [savedCharacters, setSavedCharacters] = useState<string[]>([]);
+  const [savedCharacters, setSavedCharacters] = useState<string[]>(() => {
+    const saved = localStorage.getItem(SAVED_CHARACTERS_KEY);
+    return saved ? JSON.parse(saved) : [];
+  });
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetchResults();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem(SAVED_CHARACTERS_KEY, JSON.stringify(savedCharacters));
+  }, [savedCharacters]);
 
   /* fetch the data from api */
   const fetchResults = (): void => {
@@ -45,7 +54,7 @@ const App: FC = () => {
           newNameList.push(item.name);
           const group: Character[] = [];
           group.push({
-            description: item.biography.firstAppearance,
+            firstAppearance: item.biography.firstAppearance,
             imagePath: `${item.images.lg}`,
             aliases: item.biography.aliases
           });
