@@ -64,6 +64,11 @@ const App: FC = () => {
         setCharacterObj(newCharacterObj);
         setNameList(newNameList);
         setResult(newNameList);
+      })
+      .catch(() => {
+        setCharacterObj({});
+        setNameList([]);
+        setResult([]);
       });
   };
 
